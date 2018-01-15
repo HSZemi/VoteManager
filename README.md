@@ -1,6 +1,6 @@
 # VoteManager
 
-[![Build Status](https://travis-ci.org/fabian-rump/VoteManager.svg?branch=master)](https://travis-ci.org/fabian-rump/VoteManager)
+[![Build Status](https://travis-ci.org/HSZemi/VoteManager.svg?branch=master)](https://travis-ci.org/HSZemi/VoteManager)
 
 ## English summary
 This is a rather simple vote counting/tracking application which has been written to support the vote counting during the student parliament elections at a German university.
