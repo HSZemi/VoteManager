@@ -558,6 +558,7 @@ public class MainWindowController implements Initializable {
 		// jede Urne einzeln :: 0.txt
 		for (Urne u : comboErgebnisUrne.getItems()) {
 			comboErgebnisUrne.getSelectionModel().select(u);
+			this.handleButtonBerechnen(event);
 			filename = exportdirectory.resolve(u.getNummer() + ".txt");
 			this.handleButtonExport(event, filename.toFile());
 		}
