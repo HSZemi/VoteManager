@@ -241,12 +241,13 @@ public class MainWindowController implements Initializable {
 
 	@FXML
 	private void handleButtonKandidatRename(ActionEvent event) {
-
+		showNotImplementedAlert();
 	}
 
 	@FXML
 	private void handleButtonKandidatDelete(ActionEvent event) {
-
+		Kandidat kandidat = tableKandidaten.getSelectionModel().getSelectedItem();
+		Wahl.getInstance().removeKandidat(kandidat);
 	}
 
 	@FXML
@@ -306,8 +307,8 @@ public class MainWindowController implements Initializable {
 
 	@FXML
 	private void handleButtonListeDelete(ActionEvent event) {
-		//Liste liste = tableListen.getSelectionModel().getSelectedItem();
-		//Wahl.getInstance().removeListe(liste);
+		Liste liste = tableListen.getSelectionModel().getSelectedItem();
+		Wahl.getInstance().removeListe(liste);
 	}
 
 	@FXML
@@ -366,8 +367,8 @@ public class MainWindowController implements Initializable {
 
 	@FXML
 	private void handleButtonUrneDelete(ActionEvent event) {
-		//Urne urne = tableUrnen.getSelectionModel().getSelectedItem();
-		//Wahl.getInstance().removeUrne(urne);
+		Urne urne = tableUrnen.getSelectionModel().getSelectedItem();
+		Wahl.getInstance().removeUrne(urne);
 	}
 
 	@FXML
@@ -410,6 +411,10 @@ public class MainWindowController implements Initializable {
 
 	@FXML
 	private void handleButtonStimmenDelete(ActionEvent event) {
+		showNotImplementedAlert();
+	}
+
+	private void showNotImplementedAlert() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Stimmen löschen");
 		alert.setHeaderText("Nicht implementiert");
@@ -418,7 +423,6 @@ public class MainWindowController implements Initializable {
 		alert.getDialogPane().setPrefSize(480, 150);
 
 		alert.showAndWait();
-
 	}
 
 	@FXML
