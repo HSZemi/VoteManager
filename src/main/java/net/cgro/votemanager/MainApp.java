@@ -1,20 +1,10 @@
 package net.cgro.votemanager;
 
-import java.io.File;
-import net.cgro.votemanager.model.Kandidatenergebnis;
-import net.cgro.votemanager.model.Kandidat;
-import net.cgro.votemanager.model.Wahl;
-import net.cgro.votemanager.model.Listenergebnis;
-import net.cgro.votemanager.model.Liste;
-import net.cgro.votemanager.model.Urne;
-import net.cgro.votemanager.model.Ergebnis;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javax.xml.bind.JAXB;
 
 
 public class MainApp extends Application {
@@ -38,17 +28,17 @@ public class MainApp extends Application {
         //testlst.addKandidatenergebnis(testknd);
         //ergebnis.addListenergebnis(testlst);
         //testwahl.setErgebnis(ergebnis);
-        
+
         //File file = new File("testwahl.xml");
         //JAXB.marshal(testwahl,file);
         //Wahl testwahl2 = JAXB.unmarshal(file, Wahl.class);
         //System.out.println(testwahl.getListen().get(0).getName());
-        
+
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
-        
+
         Scene scene = new Scene(root);
         scene.getStylesheets().add("/styles/Styles.css");
-        
+
         stage.setTitle("VoteManager");
         stage.setScene(scene);
         stage.show();

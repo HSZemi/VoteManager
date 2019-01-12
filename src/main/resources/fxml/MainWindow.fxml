@@ -1,302 +1,354 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.cgro.votemanager.controller.MainWindowController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="Datei">
-            <items>
-                  <MenuItem mnemonicParsing="false" onAction="#handleMenuOpen" text="Öffnen" />
-                  <MenuItem mnemonicParsing="false" onAction="#handleMenuSave" text="Speichern" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-              <MenuItem mnemonicParsing="false" onAction="#handleMenuClose" text="Schließen" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Hilfe">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Über Votemanager" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <center>
-      <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
-        <tabs>
-          <Tab text="Urnen">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <top>
-                        <GridPane BorderPane.alignment="CENTER">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Button fx:id="buttonUrneAdd" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonUrneAdd" prefHeight="50.0" prefWidth="208.0" text="Urne hinzufügen">
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Button>
-                              <Button fx:id="buttonUrneRename" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonUrneRename" prefHeight="50.0" prefWidth="215.0" text="Urne umbenennen" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Button>
-                              <Button fx:id="buttonUrneDelete" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonUrneDelete" prefHeight="50.0" prefWidth="221.0" text="Urne löschen" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Button>
-                           </children>
+<?import javafx.scene.text.*?>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="net.cgro.votemanager.controller.MainWindowController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Datei">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleMenuOpen" text="Öffnen"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleMenuSave" text="Speichern"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem mnemonicParsing="false" onAction="#handleMenuClose" text="Schließen"/>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Hilfe">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Über Votemanager"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+            <tabs>
+                <Tab text="Urnen">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <top>
+                                <GridPane BorderPane.alignment="CENTER">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                    <children>
+                                        <Button fx:id="buttonUrneAdd" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonUrneAdd" prefHeight="50.0" prefWidth="208.0"
+                                                text="Urne hinzufügen">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="buttonUrneRename" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonUrneRename" prefHeight="50.0" prefWidth="215.0"
+                                                text="Urne umbenennen" GridPane.columnIndex="1">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="buttonUrneDelete" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonUrneDelete" prefHeight="50.0" prefWidth="221.0"
+                                                text="Urne löschen" GridPane.columnIndex="2">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                    </children>
+                                </GridPane>
+                            </top>
+                            <center>
+                                <TableView fx:id="tableUrnen" prefHeight="200.0" prefWidth="200.0"
+                                           BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="columnUrnenNummer" maxWidth="50.0" minWidth="50.0"
+                                                     prefWidth="50.0" text="#"/>
+                                        <TableColumn fx:id="columnUrnenName" editable="false" prefWidth="700.0"
+                                                     text="Name"/>
+                                    </columns>
+                                </TableView>
+                            </center>
+                        </BorderPane>
+                    </content>
+                </Tab>
+                <Tab text="Listen">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <center>
+                                <TableView fx:id="tableListen" prefHeight="200.0" prefWidth="200.0"
+                                           BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="columnListenNummer" maxWidth="50.0" minWidth="50.0"
+                                                     prefWidth="50.0" text="#"/>
+                                        <TableColumn fx:id="columnListenKuerzel" editable="false" prefWidth="174.0"
+                                                     text="Kürzel"/>
+                                        <TableColumn fx:id="columnListenName" editable="false" minWidth="0.0"
+                                                     prefWidth="552.0" text="Name"/>
+                                    </columns>
+                                </TableView>
+                            </center>
+                            <top>
+                                <GridPane BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="buttonListeAdd" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonListeAdd" prefHeight="50.0" prefWidth="208.0"
+                                                text="Liste hinzufügen">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="buttonListeRename" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonListeRename" prefHeight="50.0" prefWidth="215.0"
+                                                text="Liste ändern" GridPane.columnIndex="1">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button fx:id="buttonListeDelete" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonListeDelete" prefHeight="50.0" prefWidth="221.0"
+                                                text="Liste löschen" GridPane.columnIndex="2">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                    </children>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                </GridPane>
+                            </top>
+                        </BorderPane>
+                    </content>
+                </Tab>
+                <Tab text="Kandidaten">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <center>
+                                <TableView fx:id="tableKandidaten" prefHeight="200.0" prefWidth="200.0"
+                                           BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TableColumn fx:id="columnKandidatenNummer" maxWidth="50.0" minWidth="50.0"
+                                                     prefWidth="50.0" text="#"/>
+                                        <TableColumn fx:id="columnKandidatenName" editable="false" minWidth="0.0"
+                                                     prefWidth="350.0" text="Name"/>
+                                    </columns>
+                                </TableView>
+                            </center>
+                            <top>
+                                <GridPane BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="buttonKandidatAdd" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonKandidatAdd" prefHeight="50.0" prefWidth="208.0"
+                                                text="Kandidat hinzufügen" GridPane.columnIndex="1">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <Button fx:id="buttonKandidatRename" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonKandidatRename" prefHeight="50.0"
+                                                prefWidth="215.0" text="Kandidat ändern" GridPane.columnIndex="2">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <Button fx:id="buttonKandidatLöschen" maxWidth="5000.0" mnemonicParsing="false"
+                                                onAction="#handleButtonKandidatDelete" prefHeight="50.0"
+                                                prefWidth="221.0" text="Kandidat löschen" GridPane.columnIndex="3">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                        </Button>
+                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <Label text="Liste auswählen"/>
+                                                <ComboBox fx:id="comboListen" onAction="#handleComboListen"
+                                                          prefWidth="150.0"/>
+                                            </children>
+                                            <GridPane.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                            </GridPane.margin>
+                                        </VBox>
+                                    </children>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                </GridPane>
+                            </top>
+                        </BorderPane>
+                    </content>
+                </Tab>
+                <Tab text="Stimmeneingabe">
+                    <content>
+                        <GridPane>
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                                <RowConstraints maxHeight="5000.0" minHeight="10.0" prefHeight="200.0"
+                                                vgrow="SOMETIMES"/>
+                            </rowConstraints>
+                            <children>
+                                <Button fx:id="buttonStimmenModify" maxHeight="50.0" maxWidth="5000.0"
+                                        mnemonicParsing="false" onAction="#handleButtonStimmenModify"
+                                        text="Stimmen eingeben/bearbeiten">
+                                    <GridPane.margin>
+                                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                    </GridPane.margin>
+                                    <font>
+                                        <Font name="System Bold" size="13.0"/>
+                                    </font>
+                                </Button>
+                                <Button fx:id="buttonStimmenDelete" disable="true" maxHeight="50.0" maxWidth="5000.0"
+                                        mnemonicParsing="false" onAction="#handleButtonStimmenDelete"
+                                        text="Stimmen löschen" GridPane.columnIndex="1">
+                                    <GridPane.margin>
+                                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                    </GridPane.margin>
+                                    <font>
+                                        <Font name="System Bold" size="13.0"/>
+                                    </font>
+                                </Button>
+                                <TableView fx:id="tableStimmeneingabe" prefHeight="200.0" prefWidth="200.0"
+                                           GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                    <columns>
+                                        <TableColumn fx:id="columnStimmenNummer" maxWidth="50.0" minWidth="50.0"
+                                                     prefWidth="50.0" text="#"/>
+                                        <TableColumn fx:id="columnStimmenUrne" prefWidth="275.0" text="Urne"/>
+                                        <TableColumn fx:id="columnStimmenStatus" minWidth="0.0" prefWidth="374.0"
+                                                     text="Status"/>
+                                    </columns>
+                                </TableView>
+                            </children>
                         </GridPane>
-                     </top>
-                     <center>
-                        <TableView fx:id="tableUrnen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                          <columns>
-                              <TableColumn fx:id="columnUrnenNummer" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="#" />
-                            <TableColumn fx:id="columnUrnenName" editable="false" prefWidth="700.0" text="Name" />
-                          </columns>
-                        </TableView>
-                     </center>
-                  </BorderPane>
-               </content>
-          </Tab>
-            <Tab text="Listen">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <TableView fx:id="tableListen" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <columns>
-                              <TableColumn fx:id="columnListenNummer" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="#" />
-                              <TableColumn fx:id="columnListenKuerzel" editable="false" prefWidth="174.0" text="Kürzel" />
-                              <TableColumn fx:id="columnListenName" editable="false" minWidth="0.0" prefWidth="552.0" text="Name" />
-                           </columns>
-                        </TableView>
-                     </center>
-                     <top>
-                        <GridPane BorderPane.alignment="CENTER">
-                           <children>
-                              <Button fx:id="buttonListeAdd" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonListeAdd" prefHeight="50.0" prefWidth="208.0" text="Liste hinzufügen">
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Button>
-                              <Button fx:id="buttonListeRename" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonListeRename" prefHeight="50.0" prefWidth="215.0" text="Liste ändern" GridPane.columnIndex="1">
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Button>
-                              <Button fx:id="buttonListeDelete" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonListeDelete" prefHeight="50.0" prefWidth="221.0" text="Liste löschen" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font></Button>
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </top>
-                  </BorderPane>
-               </content>
-            </Tab>
-            <Tab text="Kandidaten">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <center>
-                        <TableView fx:id="tableKandidaten" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                           <columns>
-                              <TableColumn fx:id="columnKandidatenNummer" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="#" />
-                              <TableColumn fx:id="columnKandidatenName" editable="false" minWidth="0.0" prefWidth="350.0" text="Name" />
-                           </columns>
-                        </TableView>
-                     </center>
-                     <top>
-                        <GridPane BorderPane.alignment="CENTER">
-                           <children>
-                              <Button fx:id="buttonKandidatAdd" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatAdd" prefHeight="50.0" prefWidth="208.0" text="Kandidat hinzufügen" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                              </Button>
-                              <Button fx:id="buttonKandidatRename" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatRename" prefHeight="50.0" prefWidth="215.0" text="Kandidat ändern" GridPane.columnIndex="2">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                              </Button>
-                              <Button fx:id="buttonKandidatLöschen" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatDelete" prefHeight="50.0" prefWidth="221.0" text="Kandidat löschen" GridPane.columnIndex="3">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                              </Button>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="Liste auswählen" />
-                                    <ComboBox fx:id="comboListen" onAction="#handleComboListen" prefWidth="150.0" />
-                                 </children>
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </VBox>
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </top>
-                  </BorderPane>
-               </content>
-            </Tab>
-            <Tab text="Stimmeneingabe">
-               <content>
-                  <GridPane>
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="5000.0" minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <Button fx:id="buttonStimmenModify" maxHeight="50.0" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonStimmenModify" text="Stimmen eingeben/bearbeiten">
-                           <GridPane.margin>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="buttonStimmenDelete" disable="true" maxHeight="50.0" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonStimmenDelete" text="Stimmen löschen" GridPane.columnIndex="1">
-                           <GridPane.margin>
-                              <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                           </GridPane.margin>
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <TableView fx:id="tableStimmeneingabe" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="1">
-                          <columns>
-                              <TableColumn fx:id="columnStimmenNummer" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="#" />
-                            <TableColumn fx:id="columnStimmenUrne" prefWidth="275.0" text="Urne" />
-                              <TableColumn fx:id="columnStimmenStatus" minWidth="0.0" prefWidth="374.0" text="Status" />
-                          </columns>
-                        </TableView>
-                     </children>
-                  </GridPane>
-               </content>
-            </Tab>
-            <Tab text="Ergebnisse">
-               <content>
-                  <BorderPane prefHeight="200.0" prefWidth="200.0">
-                     <top>
-                        <GridPane BorderPane.alignment="CENTER">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
-                                 <children>
-                                    <Label text="Nur folgende Urne anzeigen" />
-                                    <ComboBox fx:id="comboErgebnisUrne" prefWidth="150.0" />
-                                 </children>
-                                 <GridPane.margin>
-                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                                 </GridPane.margin>
-                              </VBox>
-                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonAlle" prefHeight="48.0" prefWidth="231.0" text="Alle Urnen" GridPane.columnIndex="1">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Button>
-                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonBerechnen" text="Erneut berechnen" GridPane.columnIndex="2">
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Button>
-                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonExport" text="Export als Text" GridPane.columnIndex="3">
-                                 <GridPane.margin>
-                                    <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
-                                 </GridPane.margin>
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Button>
-                              <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonExportAll" text="Alle exportieren" GridPane.columnIndex="4">
-                                 <font>
-                                    <Font name="System Bold" size="13.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </top>
-                     <center>
-                        <TreeTableView fx:id="tableErgebnisanzeige" prefHeight="200.0" prefWidth="200.0" showRoot="false" BorderPane.alignment="CENTER">
-                          <columns>
-                            <TreeTableColumn fx:id="columnErgebnisText" prefWidth="320.0" sortable="false" text="Liste/Name" />
-                            <TreeTableColumn fx:id="columnErgebnisStimmen" minWidth="0.0" prefWidth="379.0" sortType="DESCENDING" text="Stimmen" />
-                          </columns>
-                        </TreeTableView>
-                     </center>
-                  </BorderPane>
-               </content>
-            </Tab>
-        </tabs>
-      </TabPane>
-   </center>
+                    </content>
+                </Tab>
+                <Tab text="Ergebnisse">
+                    <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0">
+                            <top>
+                                <GridPane BorderPane.alignment="CENTER">
+                                    <children>
+                                        <VBox prefHeight="200.0" prefWidth="100.0">
+                                            <children>
+                                                <Label text="Nur folgende Urne anzeigen"/>
+                                                <ComboBox fx:id="comboErgebnisUrne" prefWidth="150.0"/>
+                                            </children>
+                                            <GridPane.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+                                            </GridPane.margin>
+                                        </VBox>
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                                mnemonicParsing="false" onAction="#handleButtonAlle" prefHeight="48.0"
+                                                prefWidth="231.0" text="Alle Urnen" GridPane.columnIndex="1">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                                mnemonicParsing="false" onAction="#handleButtonBerechnen"
+                                                text="Erneut berechnen" GridPane.columnIndex="2">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                                mnemonicParsing="false" onAction="#handleButtonExport"
+                                                text="Export als Text" GridPane.columnIndex="3">
+                                            <GridPane.margin>
+                                                <Insets bottom="1.0" left="1.0" right="1.0" top="1.0"/>
+                                            </GridPane.margin>
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                                                mnemonicParsing="false" onAction="#handleButtonExportAll"
+                                                text="Alle exportieren" GridPane.columnIndex="4">
+                                            <font>
+                                                <Font name="System Bold" size="13.0"/>
+                                            </font>
+                                        </Button>
+                                    </children>
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES"/>
+                                    </rowConstraints>
+                                </GridPane>
+                            </top>
+                            <center>
+                                <TreeTableView fx:id="tableErgebnisanzeige" prefHeight="200.0" prefWidth="200.0"
+                                               showRoot="false" BorderPane.alignment="CENTER">
+                                    <columns>
+                                        <TreeTableColumn fx:id="columnErgebnisText" prefWidth="320.0" sortable="false"
+                                                         text="Liste/Name"/>
+                                        <TreeTableColumn fx:id="columnErgebnisStimmen" minWidth="0.0" prefWidth="379.0"
+                                                         sortType="DESCENDING" text="Stimmen"/>
+                                    </columns>
+                                </TreeTableView>
+                            </center>
+                        </BorderPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
 </BorderPane>

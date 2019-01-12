@@ -1,6 +1,5 @@
 package net.cgro.votemanager.util;
-import java.util.ArrayList;
-import java.util.List;
+
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -12,6 +11,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Provides the basis for an editable table cell using a text field. Sub-classes can provide formatters for display and a
  * commitHelper to control when editing is committed.
@@ -20,8 +22,10 @@ import javafx.scene.input.KeyEvent;
  */
 public abstract class AbstractEditableTableCell<S, T> extends TableCell<S, T> {
     protected TextField textField;
+
     public AbstractEditableTableCell() {
     }
+
     /**
      * Any action attempting to commit an edit should call this method rather than commit the edit directly itself. This
      * method will perform any validation and conversion required on the value. For text values that normally means this
@@ -33,10 +37,12 @@ public abstract class AbstractEditableTableCell<S, T> extends TableCell<S, T> {
      * @param losingFocus true if the reason for the call was because the field is losing focus.
      */
     protected abstract void commitHelper(boolean losingFocus);
+
     /**
      * Provides the string representation of the value of this cell when the cell is not being edited.
      */
     protected abstract String getString();
+
     @Override
     public void startEdit() {
         super.startEdit();
@@ -53,6 +59,7 @@ public abstract class AbstractEditableTableCell<S, T> extends TableCell<S, T> {
             }
         });
     }
+
     @Override
     public void cancelEdit() {
         super.cancelEdit();
@@ -64,6 +71,7 @@ public abstract class AbstractEditableTableCell<S, T> extends TableCell<S, T> {
         //of the editing.
         textField = null;
     }
+
     @Override
     public void updateItem(T item, boolean empty) {
         super.updateItem(item, empty);
@@ -83,6 +91,7 @@ public abstract class AbstractEditableTableCell<S, T> extends TableCell<S, T> {
             }
         }
     }
+
     private void createTextField() {
         textField = new TextField(getString());
         textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
@@ -95,8 +104,8 @@ public abstract class AbstractEditableTableCell<S, T> extends TableCell<S, T> {
                     cancelEdit();
                 } else if (t.getCode() == KeyCode.TAB) {
                     commitHelper(false);
- 
-                getTableView().edit(getTableView().getSelectionModel().getSelectedIndex()+1, getTableColumn());
+
+                    getTableView().edit(getTableView().getSelectionModel().getSelectedIndex() + 1, getTableColumn());
 
                 }
             }
@@ -116,8 +125,8 @@ public abstract class AbstractEditableTableCell<S, T> extends TableCell<S, T> {
             }
         });
     }
+
     /**
-     *
      * @param forward true gets the column to the right, false the column to the left of the current column
      * @return
      */
@@ -145,6 +154,7 @@ public abstract class AbstractEditableTableCell<S, T> extends TableCell<S, T> {
         }
         return columns.get(nextIndex);
     }
+
     private List<TableColumn<S, ?>> getLeaves(TableColumn<S, ?> root) {
         List<TableColumn<S, ?>> columns = new ArrayList<>();
         if (root.getColumns().isEmpty()) {

@@ -5,8 +5,6 @@
  */
 package net.cgro.votemanager.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import net.cgro.votemanager.model.Urne;
 import net.cgro.votemanager.model.Wahl;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -38,15 +39,15 @@ public class UrneAddDialogController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         inputName.setPromptText("Name der Urne eingeben");
         inputNummer.setPromptText("Nummer der Urne eingeben");
-    }    
+    }
 
     @FXML
     private void handleButtonAdd(ActionEvent event) {
         // Füge neue Urne zur Wahl hinzu
         Wahl wahl = Wahl.getInstance();
-        Urne urne = new Urne(inputName.getText(),Integer.parseInt(inputNummer.getText()));
+        Urne urne = new Urne(inputName.getText(), Integer.parseInt(inputNummer.getText()));
         wahl.addUrne(urne);
-        
+
         // Schließe das Fenster
         Stage stage = (Stage) buttonAdd.getScene().getWindow();
         stage.close();
@@ -58,5 +59,5 @@ public class UrneAddDialogController implements Initializable {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
-    
+
 }

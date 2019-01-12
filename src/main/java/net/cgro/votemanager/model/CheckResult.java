@@ -6,25 +6,22 @@
 package net.cgro.votemanager.model;
 
 /**
- *
  * @author fabian
  */
 
 public class CheckResult {
-    
+
     private String info;
     private ResultType type;
-    
-    public CheckResult(String info, ResultType type)
-    {
+
+    public CheckResult(String info, ResultType type) {
         this.info = info;
         this.type = type;
     }
-    
+
     @Override
-    public String toString()
-    {
-        switch(type){
+    public String toString() {
+        switch (type) {
             case RESULT_TYPE_OK:
                 return "OK: " + info;
             case RESULT_TYPE_WARNING:
@@ -34,15 +31,13 @@ public class CheckResult {
         }
         return info;
     }
-    
-    public String getInfo()
-    {
+
+    public String getInfo() {
         return this.info;
     }
-    
-    public ResultType getType()
-    {
+
+    public ResultType getType() {
         return this.type;
     }
-    
+
 }

@@ -29,8 +29,8 @@ Das Laden und Speichern ist jederzeit über den Menüpunkt "Datei" möglich.
 
 ## Entwicklung
 
-Das Programm basiert auf der Programmiersprache Java und kann mit NetBeans und Maven kompiliert werden.
-Die GUI des Programms nutzt das GUI-Toolkit "JavaFX". Zur Bearbeitung der JavaFX-Definitionen kann der JavaFX Scene Builder benutzt werden-
+Das Programm basiert auf der Programmiersprache Java und kann mit Gradle kompiliert werden. (`./gradlew build`)
+Die GUI des Programms nutzt das GUI-Toolkit "JavaFX". Zur Bearbeitung der JavaFX-Definitionen kann der JavaFX Scene Builder benutzt werden.
 
 ## Lizenz
 

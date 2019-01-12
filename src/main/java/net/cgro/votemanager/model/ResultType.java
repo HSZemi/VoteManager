@@ -6,7 +6,6 @@
 package net.cgro.votemanager.model;
 
 /**
- *
  * @author fabian
  */
 public enum ResultType {

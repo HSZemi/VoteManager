@@ -1,154 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.cgro.votemanager.controller.EingabeStimmenDialogController">
-   <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="300.0">
-         <children>
-            <Label text="Abgegebene Stimmen" />
-            <TextField fx:id="inputStimmen">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Separator prefWidth="200.0">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Separator>
-            <Label text="Ungültige Stimmen">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="inputUngueltig">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Gültige Stimmen">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="inputGueltig">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Separator prefWidth="200.0">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Separator>
-            <Label text="Enthaltungen">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="inputEnthaltungen">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Separator prefWidth="200.0">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Separator>
-            <Button fx:id="buttonWeiter" maxHeight="70.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonWeiter" prefHeight="70.0" text="Ergebnis übernehmen">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="System Bold" size="13.0" />
-               </font>
-            </Button>
-            <Button fx:id="buttonCancel" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleButtonCancel" prefHeight="50.0" text="Abbrechen">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
-      <Separator orientation="VERTICAL" prefHeight="500.0">
-         <padding>
-            <Insets left="10.0" right="10.0" />
-         </padding>
-      </Separator>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
-         <children>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label text="Liste auswählen">
-                     <font>
-                        <Font name="System Bold" size="13.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="comboListen" minHeight="30.0" onAction="#handleComboListen" prefHeight="30.0" prefWidth="268.0">
-                     <HBox.margin>
-                        <Insets left="10.0" />
-                     </HBox.margin>
-                  </ComboBox>
-               </children>
-            </HBox>
-            <Separator prefWidth="200.0">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Separator>
-            <Label text="Gesamtstimmen der Liste">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="inputListeGesamt">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Listenstimmen der Liste">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="inputListenstimmen">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Separator prefWidth="200.0">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Separator>
-            <Label text="Einzelstimmen der Kandidaten der Liste">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TableView fx:id="tableEinzelstimmen" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
-               <columns>
-                  <TableColumn fx:id="columnNummer" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="#" />
-                  <TableColumn fx:id="columnKandidat" editable="false" prefWidth="134.0" text="Kandidat" />
-                  <TableColumn fx:id="columnStimmen" prefWidth="194.0" text="Stimmen" />
-               </columns>
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </TableView>
-         </children>
-      </VBox>
-   </children>
-   <padding>
-      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-   </padding>
+<?import javafx.scene.text.Font?>
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="net.cgro.votemanager.controller.EingabeStimmenDialogController">
+    <children>
+        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0"
+              prefWidth="300.0">
+            <children>
+                <Label text="Abgegebene Stimmen"/>
+                <TextField fx:id="inputStimmen">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </TextField>
+                <Separator prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets top="20.0"/>
+                    </VBox.margin>
+                </Separator>
+                <Label text="Ungültige Stimmen">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="inputUngueltig">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </TextField>
+                <Label text="Gültige Stimmen">
+                    <VBox.margin>
+                        <Insets top="20.0"/>
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="inputGueltig">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </TextField>
+                <Separator prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets top="20.0"/>
+                    </VBox.margin>
+                </Separator>
+                <Label text="Enthaltungen">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="inputEnthaltungen">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </TextField>
+                <Separator prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets top="20.0"/>
+                    </VBox.margin>
+                </Separator>
+                <Button fx:id="buttonWeiter" maxHeight="70.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onAction="#handleButtonWeiter" prefHeight="70.0" text="Ergebnis übernehmen">
+                    <VBox.margin>
+                        <Insets top="20.0"/>
+                    </VBox.margin>
+                    <font>
+                        <Font name="System Bold" size="13.0"/>
+                    </font>
+                </Button>
+                <Button fx:id="buttonCancel" maxHeight="50.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false"
+                        onAction="#handleButtonCancel" prefHeight="50.0" text="Abbrechen">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Button>
+            </children>
+        </VBox>
+        <Separator orientation="VERTICAL" prefHeight="500.0">
+            <padding>
+                <Insets left="10.0" right="10.0"/>
+            </padding>
+        </Separator>
+        <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+              minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" HBox.hgrow="ALWAYS">
+            <children>
+                <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                    <children>
+                        <Label text="Liste auswählen">
+                            <font>
+                                <Font name="System Bold" size="13.0"/>
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="comboListen" minHeight="30.0" onAction="#handleComboListen" prefHeight="30.0"
+                                  prefWidth="268.0">
+                            <HBox.margin>
+                                <Insets left="10.0"/>
+                            </HBox.margin>
+                        </ComboBox>
+                    </children>
+                </HBox>
+                <Separator prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Separator>
+                <Label text="Gesamtstimmen der Liste">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="inputListeGesamt">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </TextField>
+                <Label text="Listenstimmen der Liste">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <TextField fx:id="inputListenstimmen">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </TextField>
+                <Separator prefWidth="200.0">
+                    <VBox.margin>
+                        <Insets top="20.0"/>
+                    </VBox.margin>
+                </Separator>
+                <Label text="Einzelstimmen der Kandidaten der Liste">
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </Label>
+                <TableView fx:id="tableEinzelstimmen" editable="true" maxHeight="1.7976931348623157E308"
+                           maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="columnNummer" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" text="#"/>
+                        <TableColumn fx:id="columnKandidat" editable="false" prefWidth="134.0" text="Kandidat"/>
+                        <TableColumn fx:id="columnStimmen" prefWidth="194.0" text="Stimmen"/>
+                    </columns>
+                    <VBox.margin>
+                        <Insets top="10.0"/>
+                    </VBox.margin>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
 </HBox>

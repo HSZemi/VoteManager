@@ -8,21 +8,18 @@ package net.cgro.votemanager.util;
 import java.util.ArrayList;
 
 /**
- *
  * @author fabian
  */
 public class CheckArrayList<T> extends ArrayList<T> {
-    
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         String result = "";
-        for(T item: this)
-        {
+        for (T item : this) {
             result += item.toString() + "\n";
-            
+
         }
-        
+
         return result;
     }
 }

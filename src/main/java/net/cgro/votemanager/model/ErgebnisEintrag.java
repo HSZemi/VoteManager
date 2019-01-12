@@ -10,34 +10,30 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 
 /**
- *
  * @author fabian
  */
 public class ErgebnisEintrag {
-    
+
     private final SimpleStringProperty text;
     private final SimpleIntegerProperty stimmen;
-    
-    public ErgebnisEintrag(String text, Integer stimmen)
-    {
+
+    public ErgebnisEintrag(String text, Integer stimmen) {
         this.text = new SimpleStringProperty(text);
         this.stimmen = new SimpleIntegerProperty(stimmen);
     }
-    
-    public String getText()
-    {
+
+    public String getText() {
         return text.get();
     }
-    
-    public int getStimmen()
-    {
+
+    public int getStimmen() {
         return stimmen.get();
     }
 
     public ObservableValue<String> textProperty() {
         return this.text;
     }
-    
+
     public ObservableValue<Integer> stimmenProperty() {
         return this.stimmen.asObject();
     }

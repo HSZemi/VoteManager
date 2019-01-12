@@ -5,8 +5,6 @@
  */
 package net.cgro.votemanager.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import net.cgro.votemanager.model.Kandidat;
 import net.cgro.votemanager.model.Liste;
-import net.cgro.votemanager.model.Wahl;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -31,7 +31,7 @@ public class KandidatAddDialogController implements Initializable {
     private Button buttonAdd;
     @FXML
     private Button buttonCancel;
-    
+
     private Liste liste;
 
     /**
@@ -42,18 +42,17 @@ public class KandidatAddDialogController implements Initializable {
         inputName.setPromptText("Name des Kandidaten eingeben");
         inputNummer.setPromptText("Nummer des Kandidaten eingeben");
     }
-    
-    public void setListe(Liste liste)
-    {
+
+    public void setListe(Liste liste) {
         this.liste = liste;
     }
 
     @FXML
     private void handleButtonAdd(ActionEvent event) {
         // Füge neuen Kandidaten hinzu
-        Kandidat kandidat = new Kandidat(inputName.getText(),Integer.parseInt(inputNummer.getText()));
+        Kandidat kandidat = new Kandidat(inputName.getText(), Integer.parseInt(inputNummer.getText()));
         liste.addKandidat(kandidat);
-        
+
         // Schließe das Fenster
         Stage stage = (Stage) buttonAdd.getScene().getWindow();
         stage.close();
@@ -65,5 +64,5 @@ public class KandidatAddDialogController implements Initializable {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
-    
+
 }

@@ -1,5 +1,7 @@
 .idea/
+.gradle
 VoteManager.iml
+build/
 target/
 pom.xml.tag
 pom.xml.releaseBackup

@@ -5,8 +5,6 @@
  */
 package net.cgro.votemanager.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +13,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import net.cgro.votemanager.model.Liste;
 import net.cgro.votemanager.model.Wahl;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * FXML Controller class
@@ -32,7 +33,7 @@ public class ListeRenameDialogController implements Initializable {
     private TextField inputKuerzel;
     @FXML
     private TextField inputNummer;
-    
+
     private Liste liste;
 
     /**
@@ -40,11 +41,10 @@ public class ListeRenameDialogController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
-    
-    public void setListe(Liste liste)
-    {
+
+    public void setListe(Liste liste) {
         this.liste = liste;
         inputName.setText(this.liste.getName());
         inputKuerzel.setText(this.liste.getKuerzel());
@@ -57,11 +57,11 @@ public class ListeRenameDialogController implements Initializable {
         this.liste.setName(inputName.getText());
         this.liste.setKuerzel(inputKuerzel.getText());
         this.liste.setNummer(Integer.parseInt(inputNummer.getText()));
-        
+
         // Pseudo-Update auf die Liste, damit Änderung in GUI sichtbar wird
         int index = Wahl.getInstance().getListen().indexOf(this.liste);
         Wahl.getInstance().getListen().set(index, this.liste);
-        
+
         // Schließe das Fenster
         Stage stage = (Stage) buttonRename.getScene().getWindow();
         stage.close();
@@ -73,5 +73,5 @@ public class ListeRenameDialogController implements Initializable {
         Stage stage = (Stage) buttonCancel.getScene().getWindow();
         stage.close();
     }
-    
+
 }
