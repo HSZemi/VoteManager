@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlID;
+import java.util.Objects;
 
 public class Liste {
     private final SimpleStringProperty name;
@@ -94,4 +95,24 @@ public class Liste {
         return stimmenTemp2;
     }
 
+    @Override
+    public String toString() {
+        return String.format("Liste[name='%s',kuerzel='%s',nummer=%d]",
+                name.getValue(), kuerzel.getValue(), nummer.getValue());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj instanceof Liste) {
+            Liste other = (Liste) obj;
+            return Objects.equals(other.getName(), name.getValue())
+                    && Objects.equals(other.getKuerzel(), kuerzel.getValue())
+                    && Objects.equals(other.getNummer(), nummer.getValue());
+        } else {
+            return false;
+        }
+    }
 }

@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlID;
+import java.util.Objects;
 
 public class Kandidat {
     private final SimpleStringProperty name;
@@ -59,5 +60,24 @@ public class Kandidat {
 
     public int getStimmenTemp() {
         return stimmenTemp;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Kandidat[name='%s',nummer=%d]", name.getValue(), nummer.getValue());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj instanceof Kandidat) {
+            Kandidat other = (Kandidat) obj;
+            return Objects.equals(other.getName(), name.getValue())
+                    && Objects.equals(other.getNummer(), nummer.getValue());
+        } else {
+            return false;
+        }
     }
 }

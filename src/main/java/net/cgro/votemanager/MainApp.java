@@ -5,9 +5,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import net.cgro.votemanager.controller.MainWindowController;
 
 
 public class MainApp extends Application {
+
+    private static MainWindowController controller;
+
+    public static MainWindowController getController() {
+        return controller;
+    }
+
+    /**
+     * The main() method is ignored in correctly deployed JavaFX application.
+     * main() serves only as fallback in case the application can not be
+     * launched through deployment artifacts, e.g., in IDEs with limited FX
+     * support. NetBeans ignores main().
+     *
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -34,26 +53,16 @@ public class MainApp extends Application {
         //Wahl testwahl2 = JAXB.unmarshal(file, Wahl.class);
         //System.out.println(testwahl.getListen().get(0).getName());
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindow.fxml"));
+        fxmlLoader.load();
+        controller = fxmlLoader.getController();
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(fxmlLoader.getRoot());
         scene.getStylesheets().add("/styles/Styles.css");
 
         stage.setTitle("VoteManager");
         stage.setScene(scene);
         stage.show();
-    }
-
-    /**
-     * The main() method is ignored in correctly deployed JavaFX application.
-     * main() serves only as fallback in case the application can not be
-     * launched through deployment artifacts, e.g., in IDEs with limited FX
-     * support. NetBeans ignores main().
-     *
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
     }
 
 }

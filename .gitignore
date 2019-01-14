@@ -3,6 +3,7 @@
 VoteManager.iml
 build/
 target/
+out/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup

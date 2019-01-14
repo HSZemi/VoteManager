@@ -2,10 +2,15 @@ package net.cgro.votemanager.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import net.cgro.votemanager.util.ErrorCollector;
+import net.cgro.votemanager.util.MergeHelper;
+import net.cgro.votemanager.util.WahlMergeException;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import static net.cgro.votemanager.util.MergeHelper.*;
 
 @XmlRootElement
 public class Wahl {
@@ -82,7 +87,7 @@ public class Wahl {
         ergebnis.getUrne().updateStatus();
     }
 
-    boolean existiertErgebnis(Urne urne) {
+    public boolean existiertErgebnis(Urne urne) {
         // Suche passendes Ergebnis
         for (Ergebnis e : ergebnisse) {
             if (e.getUrne() == urne) {
@@ -113,5 +118,15 @@ public class Wahl {
         for (Liste liste : listen) {
             liste.getKandidaten().remove(kandidat);
         }
+    }
+
+    public void merge(Wahl other) throws WahlMergeException {
+        Wahl instance = getInstance();
+        ErrorCollector errorCollector = new ErrorCollector();
+        validateUrnenAreEqual(instance, other, errorCollector);
+        validateListenAreEqual(instance, other, errorCollector);
+        validateNoResultsAreOverwritten(instance, other, errorCollector);
+        errorCollector.throwIfHasErrors();
+        MergeHelper.merge(instance, other);
     }
 }

@@ -6,6 +6,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlID;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Urne {
     private final SimpleStringProperty name;
@@ -63,5 +64,23 @@ public class Urne {
 
     public SimpleStringProperty statusProperty() {
         return status;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Urne[name='%s',nummer=%d]", name.getValue(), nummer.getValue());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (obj instanceof Urne) {
+            Urne other = (Urne) obj;
+            return Objects.equals(other.getName(), name.getValue()) && Objects.equals(other.getNummer(), nummer.getValue());
+        } else {
+            return false;
+        }
     }
 }

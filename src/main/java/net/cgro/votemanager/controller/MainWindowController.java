@@ -23,7 +23,9 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import net.cgro.votemanager.model.*;
+import net.cgro.votemanager.util.WahlMergeException;
 
+import javax.xml.bind.DataBindingException;
 import javax.xml.bind.JAXB;
 import java.io.*;
 import java.net.URL;
@@ -32,6 +34,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import static javafx.scene.control.Alert.AlertType.ERROR;
+import static javafx.scene.control.Alert.AlertType.INFORMATION;
 
 /**
  * FXML Controller class
@@ -253,14 +258,7 @@ public class MainWindowController implements Initializable {
     private void handleButtonListeRename(ActionEvent event) {
         if (tableListen.getSelectionModel().getSelectedItem() == null) {
 
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Liste bearbeiten");
-            alert.setHeaderText("Fehler");
-            alert.setContentText("Es ist keine Liste ausgewählt. Bitte eine Liste auswählen.");
-            alert.setResizable(true);
-            alert.getDialogPane().setPrefSize(480, 150);
-
-            alert.showAndWait();
+            showAlert(ERROR, "Liste bearbeiten", "Fehler", "Es ist keine Liste ausgewählt. Bitte eine Liste auswählen.");
 
             return;
         }
@@ -314,14 +312,7 @@ public class MainWindowController implements Initializable {
     private void handleButtonUrneRename(ActionEvent event) {
         if (tableUrnen.getSelectionModel().getSelectedItem() == null) {
 
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Urne bearbeiten");
-            alert.setHeaderText("Fehler");
-            alert.setContentText("Es ist keine Urne ausgewählt. Bitte eine Urne auswählen.");
-            alert.setResizable(true);
-            alert.getDialogPane().setPrefSize(480, 150);
-
-            alert.showAndWait();
+            showAlert(ERROR, "Urne bearbeiten", "Fehler", "Es ist keine Urne ausgewählt. Bitte eine Urne auswählen.");
             return;
         }
 
@@ -356,14 +347,7 @@ public class MainWindowController implements Initializable {
     private void handleButtonStimmenModify(ActionEvent event) {
         if (tableStimmeneingabe.getSelectionModel().getSelectedItem() == null) {
 
-            Alert alert = new Alert(AlertType.ERROR);
-            alert.setTitle("Stimmen eingeben");
-            alert.setHeaderText("Fehler");
-            alert.setContentText("Es ist keine Urne ausgewählt. Bitte eine Urne auswählen.");
-            alert.setResizable(true);
-            alert.getDialogPane().setPrefSize(480, 150);
-
-            alert.showAndWait();
+            showAlert(ERROR, "Stimmen eingeben", "Fehler", "Es ist keine Urne ausgewählt. Bitte eine Urne auswählen.");
 
             return;
         }
@@ -396,10 +380,15 @@ public class MainWindowController implements Initializable {
     }
 
     private void showNotImplementedAlert() {
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Stimmen löschen");
-        alert.setHeaderText("Nicht implementiert");
-        alert.setContentText("Diese Funktionalität ist nicht implementiert.");
+        showAlert(INFORMATION, "Stimmen löschen", "Nicht implementiert", "Diese Funktionalität ist nicht implementiert.");
+    }
+
+
+    private void showAlert(AlertType alertType, String title, String header, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(message);
         alert.setResizable(true);
         alert.getDialogPane().setPrefSize(480, 150);
 
@@ -416,6 +405,28 @@ public class MainWindowController implements Initializable {
         if (file != null) {
             Wahl wahl = JAXB.unmarshal(file, Wahl.class);
             Wahl.setInstance(wahl);
+        }
+
+        // Update der GUI
+        initializeGUI();
+    }
+
+
+    @FXML
+    private void handleMenuImport(ActionEvent event) {
+
+        // Öffne aus Datei
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Datei öffnen");
+        File file = fileChooser.showOpenDialog((Stage) tableListen.getScene().getWindow());
+        if (file != null) {
+            try {
+                Wahl wahl = JAXB.unmarshal(file, Wahl.class);
+                Wahl.getInstance().merge(wahl);
+                showAlert(INFORMATION, "Import erfolgreich", "OK", "Import erfolgreich.");
+            } catch (WahlMergeException | DataBindingException e) {
+                showAlert(ERROR, "Fehler", "Import fehlgeschlagen", e.getMessage());
+            }
         }
 
         // Update der GUI
@@ -550,14 +561,7 @@ public class MainWindowController implements Initializable {
 
         this.handleButtonAlle(event);
 
-        Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("Export abgeschlossen");
-        alert.setHeaderText("Hurra!");
-        alert.setContentText("Die Ergebnisse wurden in das ausgewählte Verzeichnis exportiert.");
-        alert.setResizable(true);
-        alert.getDialogPane().setPrefSize(480, 150);
-
-        alert.showAndWait();
+        showAlert(INFORMATION, "Export abgeschlossen", "Hurra!", "Die Ergebnisse wurden in das ausgewählte Verzeichnis exportiert.");
 
     }
 }
