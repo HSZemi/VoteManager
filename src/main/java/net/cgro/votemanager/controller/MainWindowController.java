@@ -403,8 +403,12 @@ public class MainWindowController implements Initializable {
         fileChooser.setTitle("Datei öffnen");
         File file = fileChooser.showOpenDialog((Stage) tableListen.getScene().getWindow());
         if (file != null) {
-            Wahl wahl = JAXB.unmarshal(file, Wahl.class);
-            Wahl.setInstance(wahl);
+            try {
+                Wahl wahl = JAXB.unmarshal(file, Wahl.class);
+                Wahl.setInstance(wahl);
+            } catch (DataBindingException e) {
+                showAlert(ERROR, "Fehler", "Import fehlgeschlagen", e.getMessage());
+            }
         }
 
         // Update der GUI
