@@ -1,17 +1,21 @@
 package net.cgro.votemanager;
 
 import javafx.application.Application;
-import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import net.cgro.votemanager.controller.MainWindowController;
+import net.cgro.votemanager.model.Wahl;
+import spark.Spark;
 
+import javax.xml.bind.JAXB;
+import java.io.StringWriter;
 import java.util.Optional;
+
+import static spark.Spark.get;
 
 
 public class MainApp extends Application {
@@ -70,6 +74,27 @@ public class MainApp extends Application {
         stage.setScene(scene);
         stage.show();
         scene.getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::handleClose);
+
+        startServer();
+    }
+
+    @Override
+    public void stop() throws Exception {
+        super.stop();
+        stopServer();
+    }
+
+    private void startServer() {
+        get("/status", (reqest, response) -> {
+            response.type("text/xml; charset=utf-8");
+            StringWriter stringWriter = new StringWriter();
+            JAXB.marshal(Wahl.getInstance(), stringWriter);
+            return stringWriter.toString();
+        });
+    }
+
+    private void stopServer() {
+        Spark.stop();
     }
 
     private void handleClose(WindowEvent event) {
