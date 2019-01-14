@@ -1,11 +1,17 @@
 package net.cgro.votemanager;
 
 import javafx.application.Application;
+import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import net.cgro.votemanager.controller.MainWindowController;
+
+import java.util.Optional;
 
 
 public class MainApp extends Application {
@@ -63,6 +69,22 @@ public class MainApp extends Application {
         stage.setTitle("VoteManager");
         stage.setScene(scene);
         stage.show();
+        scene.getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, this::handleClose);
+    }
+
+    private void handleClose(WindowEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Programm schließen");
+        alert.setHeaderText("Das Programm wird beendet.");
+        alert.setContentText("Nicht gespeicherte Änderungen gehen dabei verloren.");
+        alert.setResizable(true);
+        alert.getDialogPane().setPrefSize(480, 150);
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() != ButtonType.OK) {
+            event.consume();
+        }
     }
 
 }
