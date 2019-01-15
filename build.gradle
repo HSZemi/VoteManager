@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = 'net.cgro'
-version = '1.2'
+version = '2019.1'
 
 description = """VoteManager"""
 
@@ -35,6 +35,9 @@ jar {
         attributes(
                 'Main-Class': 'net.cgro.votemanager.MainApp'
         )
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
     }
 }
 
