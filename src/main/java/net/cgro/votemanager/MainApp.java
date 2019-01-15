@@ -15,6 +15,7 @@ import spark.Spark;
 
 import javax.xml.bind.JAXB;
 import java.io.File;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -76,6 +77,7 @@ public class MainApp extends Application {
     }
 
     private void startAutosave() {
+        createAutosaveDirectoryIfNotExists();
         timer.scheduleAtFixedRate(
                 new TimerTask() {
                     @Override
@@ -88,16 +90,24 @@ public class MainApp extends Application {
     private void autosave() {
         try {
             Instant now = Instant.now();
-            if (!Files.isDirectory(autosavePath)) {
-                log.info("Creating directory {}", autosavePath.toAbsolutePath());
-                Files.createDirectories(autosavePath);
-            }
+            createAutosaveDirectoryIfNotExists();
             String filename = "VoteManager_autosave_" + FORMATTER.format(now) + ".xml";
             File file = autosavePath.resolve(filename).toFile();
             log.info("Automatically saving to {}", file.getAbsolutePath());
             JAXB.marshal(Wahl.getInstance(), file);
         } catch (Exception e) {
             log.warn("Could not autosave", e);
+        }
+    }
+
+    private void createAutosaveDirectoryIfNotExists() {
+        if (!Files.isDirectory(autosavePath)) {
+            log.info("Creating directory {}", autosavePath.toAbsolutePath());
+            try {
+                Files.createDirectories(autosavePath);
+            } catch (IOException e) {
+                log.error("Could not create autosave directory {}", autosavePath.toAbsolutePath(), e);
+            }
         }
     }
 
