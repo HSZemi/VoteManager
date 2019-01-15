@@ -115,6 +115,7 @@ public class MainApp extends Application {
     }
 
     private void startServer() {
+        get("/up", ((request, response) -> "up"));
         get("/status", (reqest, response) -> {
             response.type("text/xml; charset=utf-8");
             StringWriter stringWriter = new StringWriter();
