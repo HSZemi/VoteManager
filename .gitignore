@@ -4,6 +4,7 @@ VoteManager.iml
 build/
 target/
 out/
+votemanager_autosave/
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup

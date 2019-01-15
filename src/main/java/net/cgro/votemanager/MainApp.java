@@ -9,18 +9,35 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import net.cgro.votemanager.controller.MainWindowController;
 import net.cgro.votemanager.model.Wahl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spark.Spark;
 
 import javax.xml.bind.JAXB;
+import java.io.File;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Instant;
+import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static spark.Spark.get;
 
 
 public class MainApp extends Application {
 
+    final Logger log = LoggerFactory.getLogger(MainApp.class);
+
+    public static final int AUTOSAVE_MILLISECONDS = 5 * 60 * 1000;
     private static MainWindowController controller;
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("YYYY-MM-dd_hh-mm-ss").withZone(ZoneOffset.UTC);
+    private Timer timer = new Timer();
+    private Path autosavePath = Paths.get("votemanager_autosave");
 
     public static MainWindowController getController() {
         return controller;
@@ -40,28 +57,8 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //Wahl testwahl = Wahl.getInstance();
 
-        //Urne testurne = new Urne("Testurne 1");
-        //testwahl.addUrne(testurne);
-
-        //Liste testliste = new Liste("Die tolle Testliste","TEST");
-        //Kandidat testkandidat = new Kandidat("Max Mustermann");
-        //testliste.addKandidat(testkandidat);
-        //testwahl.addListe(testliste);
-
-        //Ergebnis ergebnis = new Ergebnis(testurne);
-        //Listenergebnis testlst = new Listenergebnis();
-        //testlst.setListe(testliste);
-        //Kandidatenergebnis testknd = new Kandidatenergebnis(testkandidat);
-        //testlst.addKandidatenergebnis(testknd);
-        //ergebnis.addListenergebnis(testlst);
-        //testwahl.setErgebnis(ergebnis);
-
-        //File file = new File("testwahl.xml");
-        //JAXB.marshal(testwahl,file);
-        //Wahl testwahl2 = JAXB.unmarshal(file, Wahl.class);
-        //System.out.println(testwahl.getListen().get(0).getName());
+        startAutosave();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/MainWindow.fxml"));
         fxmlLoader.load();
@@ -78,10 +75,43 @@ public class MainApp extends Application {
         startServer();
     }
 
+    private void startAutosave() {
+        timer.scheduleAtFixedRate(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        autosave();
+                    }
+                }, AUTOSAVE_MILLISECONDS, AUTOSAVE_MILLISECONDS);
+    }
+
+    private void autosave() {
+        try {
+            Instant now = Instant.now();
+            if (!Files.isDirectory(autosavePath)) {
+                log.info("Creating directory {}", autosavePath.toAbsolutePath());
+                Files.createDirectories(autosavePath);
+            }
+            String filename = "VoteManager_autosave_" + FORMATTER.format(now) + ".xml";
+            File file = autosavePath.resolve(filename).toFile();
+            log.info("Automatically saving to {}", file.getAbsolutePath());
+            JAXB.marshal(Wahl.getInstance(), file);
+        } catch (Exception e) {
+            log.warn("Could not autosave", e);
+        }
+    }
+
     @Override
     public void stop() throws Exception {
         super.stop();
         stopServer();
+        stopAutosave();
+    }
+
+    private void stopAutosave() {
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     private void startServer() {
