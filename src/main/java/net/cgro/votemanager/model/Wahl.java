@@ -121,7 +121,7 @@ public class Wahl {
     }
 
     public void merge(Wahl other) throws WahlMergeException {
-        Wahl instance = getInstance();
+        Wahl instance = this;
         ErrorCollector errorCollector = new ErrorCollector();
         validateUrnenAreEqual(instance, other, errorCollector);
         validateListenAreEqual(instance, other, errorCollector);
