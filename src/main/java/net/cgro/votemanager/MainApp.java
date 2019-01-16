@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import net.cgro.votemanager.controller.MainWindowController;
 import net.cgro.votemanager.model.Wahl;
+import net.cgro.votemanager.util.CorsFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Spark;
@@ -27,7 +28,7 @@ import java.util.Optional;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static spark.Spark.get;
+import static spark.Spark.*;
 
 
 public class MainApp extends Application {
@@ -125,6 +126,7 @@ public class MainApp extends Application {
     }
 
     private void startServer() {
+        CorsFilter.apply();
         get("/up", ((request, response) -> "up"));
         get("/status", (reqest, response) -> {
             response.type("text/xml; charset=utf-8");
