@@ -376,11 +376,25 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void handleButtonStimmenDelete(ActionEvent event) {
-        showNotImplementedAlert();
+        Urne urne = tableStimmeneingabe.getSelectionModel().getSelectedItem();
+        if (urne == null) {
+            showAlert(ERROR, "Stimmen löschen", "Fehler", "Es ist keine Urne ausgewählt. Bitte eine Urne auswählen.");
+            return;
+        }
+        Optional<ButtonType> result = showConfirmationDialog("Stimmen löschen", "Sollen die Ergebnisse dieser Urne gelöscht werden?", "Dies kann nicht rückgängig gemacht werden.");
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            boolean removed = Wahl.getInstance().removeErgebnis(urne);
+            if (removed) {
+                showAlert(INFORMATION, "Stimmen gelöscht", "Stimmen gelöscht", "Die Stimmen der Urne '" + urne.getName() + "' wurden gelöscht.");
+            } else {
+                showAlert(ERROR, "Fehler", "Fehler", "Die Stimmen der Urne '" + urne.getName() + "' konnten nicht gelöscht werden.");
+            }
+        }
+        initializeGUI();
     }
 
     private void showNotImplementedAlert() {
-        showAlert(INFORMATION, "Stimmen löschen", "Nicht implementiert", "Diese Funktionalität ist nicht implementiert.");
+        showAlert(INFORMATION, "Hoppla!", "Nicht implementiert", "Diese Funktionalität ist nicht implementiert.");
     }
 
 
@@ -451,19 +465,24 @@ public class MainWindowController implements Initializable {
     private void handleMenuClose(ActionEvent event) {
         // Schließe das Fenster
 
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Programm schließen");
-        alert.setHeaderText("Das Programm wird beendet.");
-        alert.setContentText("Nicht gespeicherte Änderungen gehen dabei verloren.");
-        alert.setResizable(true);
-        alert.getDialogPane().setPrefSize(480, 150);
+        Optional<ButtonType> result = showConfirmationDialog("Programm schließen",
+                "Das Programm wird beendet.", "Nicht gespeicherte Änderungen gehen dabei verloren.");
 
-        Optional<ButtonType> result = alert.showAndWait();
-
-        if (result.get() == ButtonType.OK) {
+        if (result.isPresent() && result.get() == ButtonType.OK) {
             Stage stage = (Stage) tableListen.getScene().getWindow();
             stage.close();
         }
+    }
+
+    private Optional<ButtonType> showConfirmationDialog(String title, String headerText, String contentText) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.setResizable(true);
+        alert.getDialogPane().setPrefSize(480, 150);
+
+        return alert.showAndWait();
     }
 
     @FXML

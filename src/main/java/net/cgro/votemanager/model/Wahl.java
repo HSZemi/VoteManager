@@ -110,6 +110,10 @@ public class Wahl {
         return new Ergebnis(urne);
     }
 
+    public boolean removeErgebnis(Urne urne) {
+        return ergebnisse.removeIf(e -> urne.equals(e.getUrne()));
+    }
+
     public void removeKandidat(Kandidat kandidat) {
         ergebnisse.forEach(
                 ergebnis -> ergebnis.getListenergebnisse().forEach(
