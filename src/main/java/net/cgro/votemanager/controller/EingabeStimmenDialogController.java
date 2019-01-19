@@ -5,26 +5,32 @@
  */
 package net.cgro.votemanager.controller;
 
-import javafx.application.Platform;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-import javafx.util.converter.IntegerStringConverter;
 import net.cgro.votemanager.model.*;
 import net.cgro.votemanager.util.CheckArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import static net.cgro.votemanager.util.DigitHelper.isDigit;
+import static net.cgro.votemanager.util.DigitHelper.toDigit;
 
 /**
  * FXML Controller class
@@ -32,6 +38,7 @@ import java.util.ResourceBundle;
  * @author fabian
  */
 public class EingabeStimmenDialogController implements Initializable {
+    private static Logger log = LoggerFactory.getLogger(EingabeStimmenDialogController.class);
 
     private Ergebnis ergebnis;
     private Listenergebnis current_lerg = null;
@@ -78,12 +85,54 @@ public class EingabeStimmenDialogController implements Initializable {
     @FXML
     private TableColumn<Kandidatenergebnis, Integer> columnStimmen;
 
-    /**
-     * Initializes the controller class.
-     */
+    private boolean resetCell = true;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        columnNummer.setCellValueFactory(new PropertyValueFactory<>("kandidatNummer"));
+        columnKandidat.setCellValueFactory(new PropertyValueFactory<>("kandidatName"));
+        columnStimmen.setCellValueFactory(new PropertyValueFactory<>("stimmen"));
+
+        tableEinzelstimmen.getSelectionModel().selectedIndexProperty().addListener(observable -> {
+            resetCell = true;
+        });
+
+        tableEinzelstimmen.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            KeyCode code = event.getCode();
+            Kandidatenergebnis kandidatenErgebnis = tableEinzelstimmen.getSelectionModel().getSelectedItem();
+            if (kandidatenErgebnis != null) {
+                if (code == KeyCode.ESCAPE || code == KeyCode.BACK_SPACE) {
+                    kandidatenErgebnis.setStimmen(0);
+                    event.consume();
+                } else if (isDigit(code)) {
+                    if (resetCell) {
+                        kandidatenErgebnis.setStimmen(toDigit(code));
+                        resetCell = false;
+                    } else {
+                        int stimmen = kandidatenErgebnis.getStimmen();
+                        kandidatenErgebnis.setStimmen(stimmen * 10 + toDigit(code));
+                    }
+                    event.consume();
+                } else if (code == KeyCode.ENTER) {
+                    tableEinzelstimmen.getSelectionModel().selectNext();
+                    makeSelectedRowVisible();
+                }
+            }
+        });
+    }
+
+    private void makeSelectedRowVisible() {
+        Skin<?> skin = tableEinzelstimmen.getSelectionModel().getTableView().getSkin();
+        if (skin instanceof SkinBase) {
+            SkinBase<?> skinBase = (SkinBase<?>) skin;
+            Optional<Node> first = skinBase.getChildren().stream()
+                    .filter(it -> it instanceof VirtualFlow)
+                    .findFirst();
+            if (first.isPresent()) {
+                VirtualFlow<?> flow = (VirtualFlow<?>) first.get();
+                flow.show(tableEinzelstimmen.getSelectionModel().getSelectedIndex());
+            }
+        }
     }
 
     public void setErgebnis(Ergebnis ergebnis) {
@@ -212,22 +261,6 @@ public class EingabeStimmenDialogController implements Initializable {
 
         inputListenstimmen.setText(Integer.toString(current_lerg.getListenstimmen()));
         inputListeGesamt.setText(Integer.toString(current_lerg.getGesamtstimmen()));
-
-        columnNummer.setCellValueFactory(new PropertyValueFactory<>("kandidatNummer"));
-        columnKandidat.setCellValueFactory(new PropertyValueFactory<>("kandidatName"));
-        columnStimmen.setCellValueFactory(new PropertyValueFactory<>("stimmen"));
-
-        columnStimmen.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-        columnStimmen.setOnEditCommit(
-                column -> {
-                    column.getRowValue().setStimmen(column.getNewValue());
-
-                    Platform.runLater(() -> {
-                        tableEinzelstimmen.getSelectionModel().selectNext();
-                        tableEinzelstimmen.edit(tableEinzelstimmen.getSelectionModel().getSelectedIndex(), columnStimmen);
-                    });
-                }
-        );
 
         tableEinzelstimmen.setItems(current_lerg.getKandidatenergebnisse());
     }
