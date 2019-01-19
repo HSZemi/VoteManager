@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 
 group = 'net.cgro'
-version = '2019.2'
+version = '2019.3'
 
 description = """VoteManager"""
 

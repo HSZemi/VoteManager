@@ -7,12 +7,10 @@ package net.cgro.votemanager.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.GridPane;
@@ -118,6 +116,7 @@ public class EingabeStimmenDialogController implements Initializable {
         comboListen.setItems(ergebnis.getListenergebnisse());
         comboListen.getSelectionModel().selectFirst();
         current_lerg = comboListen.getSelectionModel().getSelectedItem();
+        loadSelectedListe();
     }
 
     private void saveInputs() {
@@ -204,40 +203,33 @@ public class EingabeStimmenDialogController implements Initializable {
 
     @FXML
     private void handleComboListen(ActionEvent event) {
-
         saveInputs();
+        loadSelectedListe();
+    }
 
+    private void loadSelectedListe() {
         current_lerg = comboListen.getSelectionModel().getSelectedItem();
 
         inputListenstimmen.setText(Integer.toString(current_lerg.getListenstimmen()));
         inputListeGesamt.setText(Integer.toString(current_lerg.getGesamtstimmen()));
 
-        columnNummer.setCellValueFactory(new PropertyValueFactory<Kandidatenergebnis, Integer>("kandidatNummer"));
-        columnKandidat.setCellValueFactory(new PropertyValueFactory<Kandidatenergebnis, String>("kandidatName"));
-        columnStimmen.setCellValueFactory(new PropertyValueFactory<Kandidatenergebnis, Integer>("stimmen"));
+        columnNummer.setCellValueFactory(new PropertyValueFactory<>("kandidatNummer"));
+        columnKandidat.setCellValueFactory(new PropertyValueFactory<>("kandidatName"));
+        columnStimmen.setCellValueFactory(new PropertyValueFactory<>("stimmen"));
 
-        columnStimmen.setCellFactory(TextFieldTableCell.<Kandidatenergebnis, Integer>forTableColumn(new IntegerStringConverter()));
+        columnStimmen.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         columnStimmen.setOnEditCommit(
-                new EventHandler<CellEditEvent<Kandidatenergebnis, Integer>>() {
-                    @Override
-                    public void handle(CellEditEvent<Kandidatenergebnis, Integer> t) {
-                        t.getRowValue().setStimmen(t.getNewValue());
-                        //if(tableEinzelstimmen.getSelectionModel().getSelectedIndex() < tableEinzelstimmen.getItems().size()-1)
-                        //    tableEinzelstimmen.edit(tableEinzelstimmen.getSelectionModel().getSelectedIndex()+1, columnStimmen);
+                column -> {
+                    column.getRowValue().setStimmen(column.getNewValue());
 
-                        Platform.runLater(new Runnable() {
-                            @Override
-                            public void run() {
-                                tableEinzelstimmen.getSelectionModel().selectNext();
-                                tableEinzelstimmen.edit(tableEinzelstimmen.getSelectionModel().getSelectedIndex(), columnStimmen);
-                            }
-                        });
-                    }
+                    Platform.runLater(() -> {
+                        tableEinzelstimmen.getSelectionModel().selectNext();
+                        tableEinzelstimmen.edit(tableEinzelstimmen.getSelectionModel().getSelectedIndex(), columnStimmen);
+                    });
                 }
         );
 
         tableEinzelstimmen.setItems(current_lerg.getKandidatenergebnisse());
-
     }
 
 }
