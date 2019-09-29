@@ -24,6 +24,6 @@ steps:
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'
   inputs:
-    gitHubConnection: hszemi
+    gitHubConnection: votemanager
     repositoryName: hszemi/VoteManager
     assets: $(Build.ArtifactStagingDirectory)/*.jar
