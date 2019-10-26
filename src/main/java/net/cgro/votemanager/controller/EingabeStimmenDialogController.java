@@ -5,7 +5,6 @@
  */
 package net.cgro.votemanager.controller;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.skin.VirtualFlow;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -130,7 +130,7 @@ public class EingabeStimmenDialogController implements Initializable {
                     .findFirst();
             if (first.isPresent()) {
                 VirtualFlow<?> flow = (VirtualFlow<?>) first.get();
-                flow.show(tableEinzelstimmen.getSelectionModel().getSelectedIndex());
+                flow.scrollTo(tableEinzelstimmen.getSelectionModel().getSelectedIndex());
             }
         }
     }
