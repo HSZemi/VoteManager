@@ -16,14 +16,22 @@ steps:
     gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     javaHomeOption: 'JDKVersion'
-    jdkVersionOption: '1.8'
+    jdkVersionOption: '1.11'
     jdkArchitectureOption: 'x64'
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'build'
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
+  inputs:
+    Contents: 'build/libs/*.jar'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
 - task: GithubRelease@0 
   displayName: 'Create GitHub Release'
   inputs:
     gitHubConnection: votemanager
     repositoryName: hszemi/VoteManager
+    tagSource: manual
+    tag: $(Build.BuildNumber)
     assets: $(Build.ArtifactStagingDirectory)/*.jar
