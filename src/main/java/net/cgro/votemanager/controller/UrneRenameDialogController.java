@@ -31,6 +31,8 @@ public class UrneRenameDialogController implements Initializable {
     private TextField inputName;
     @FXML
     private TextField inputNummer;
+    @FXML
+    private TextField inputStandort;
 
     private Urne urne;
 
@@ -46,6 +48,7 @@ public class UrneRenameDialogController implements Initializable {
         this.urne = urne;
         inputName.setText(this.urne.getName());
         inputNummer.setText(Integer.toString(this.urne.getNummer()));
+        inputStandort.setText(this.urne.getStandort());
     }
 
     @FXML
@@ -53,6 +56,7 @@ public class UrneRenameDialogController implements Initializable {
         // Ändere Name der Urne
         this.urne.setName(inputName.getText());
         this.urne.setNummer(Integer.parseInt(inputNummer.getText()));
+        this.urne.setStandort(inputStandort.getText());
 
         // Pseudo-Update auf die Liste, damit Änderung in GUI sichtbar wird
         int index = Wahl.getInstance().getUrnen().indexOf(this.urne);

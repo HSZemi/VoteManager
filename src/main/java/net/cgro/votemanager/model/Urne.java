@@ -13,10 +13,17 @@ public class Urne {
     private final SimpleIntegerProperty nummer;
     private final SimpleStringProperty status;
 
+    private final SimpleStringProperty standort;
+
     public Urne(String name, int nummer) {
+        this(name, nummer, "");
+    }
+
+    public Urne(String name, int nummer, String standort) {
         this.name = new SimpleStringProperty(name);
         this.nummer = new SimpleIntegerProperty(nummer);
         this.status = new SimpleStringProperty();
+        this.standort = new SimpleStringProperty(standort);
         this.updateStatus();
     }
 
@@ -24,6 +31,7 @@ public class Urne {
         this.name = new SimpleStringProperty();
         this.nummer = new SimpleIntegerProperty();
         this.status = new SimpleStringProperty();
+        this.standort = new SimpleStringProperty();
         this.updateStatus();
     }
 
@@ -44,6 +52,19 @@ public class Urne {
 
     public void setNummer(int nummer) {
         this.nummer.set(nummer);
+    }
+
+    @XmlAttribute
+    public String getStandort() {
+        return standort.get();
+    }
+
+    public void setStandort(String standort) {
+        this.standort.set(standort);
+    }
+
+    public SimpleStringProperty standortProperty() {
+        return standort;
     }
 
     public void updateStatus() {

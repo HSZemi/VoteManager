@@ -31,6 +31,8 @@ public class UrneAddDialogController implements Initializable {
     private TextField inputName;
     @FXML
     private TextField inputNummer;
+    @FXML
+    private TextField inputStandort;
 
     /**
      * Initializes the controller class.
@@ -39,13 +41,14 @@ public class UrneAddDialogController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         inputName.setPromptText("Name der Urne eingeben");
         inputNummer.setPromptText("Nummer der Urne eingeben");
+        inputStandort.setPromptText("Standort der Urne eingeben");
     }
 
     @FXML
     private void handleButtonAdd(ActionEvent event) {
         // Füge neue Urne zur Wahl hinzu
         Wahl wahl = Wahl.getInstance();
-        Urne urne = new Urne(inputName.getText(), Integer.parseInt(inputNummer.getText()));
+        Urne urne = new Urne(inputName.getText(), Integer.parseInt(inputNummer.getText()), inputStandort.getText());
         wahl.addUrne(urne);
 
         // Schließe das Fenster

@@ -23,6 +23,16 @@
                 <Insets top="10.0" />
             </VBox.margin>
         </TextField>
+        <Label text="Standort der Urne">
+            <padding>
+                <Insets top="20.0" />
+            </padding>
+        </Label>
+        <TextField id="input_urne_standort" fx:id="inputStandort">
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </TextField>
         <HBox prefHeight="25.0" prefWidth="200.0">
             <children>
                 <Button id="btn_add_urne_confirm" fx:id="buttonAdd" defaultButton="true" mnemonicParsing="false" onAction="#handleButtonAdd" text="Hinzufügen">

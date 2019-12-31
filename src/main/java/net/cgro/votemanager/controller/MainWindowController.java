@@ -57,6 +57,8 @@ public class MainWindowController implements Initializable {
     private TableColumn<Urne, String> columnUrnenName;
     @FXML
     private TableColumn<Urne, Integer> columnUrnenNummer;
+    @FXML
+    private TableColumn<Urne, String> columnUrnenStandort;
 
     @FXML
     private Button buttonListeAdd;
@@ -126,6 +128,7 @@ public class MainWindowController implements Initializable {
         // Initialisiere Tabelle und verbinde mit Model
         columnUrnenName.setCellValueFactory(new PropertyValueFactory<Urne, String>("name"));
         columnUrnenNummer.setCellValueFactory(new PropertyValueFactory<Urne, Integer>("nummer"));
+        columnUrnenStandort.setCellValueFactory(new PropertyValueFactory<Urne, String>("standort"));
         tableUrnen.setItems(wahl.getUrnen());
         // Nur einzelne Zeilen auswählen
         tableUrnen.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);

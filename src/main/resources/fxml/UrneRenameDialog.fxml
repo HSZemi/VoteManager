@@ -22,6 +22,16 @@
                 <Insets top="10.0"/>
             </VBox.margin>
         </TextField>
+        <Label text="Standort der Urne">
+            <VBox.margin>
+                <Insets top="20.0"/>
+            </VBox.margin>
+        </Label>
+        <TextField fx:id="inputStandort">
+            <VBox.margin>
+                <Insets top="10.0"/>
+            </VBox.margin>
+        </TextField>
         <HBox prefHeight="25.0" prefWidth="200.0">
             <children>
                 <Button fx:id="buttonRename" defaultButton="true" mnemonicParsing="false" onAction="#handleButtonRename"

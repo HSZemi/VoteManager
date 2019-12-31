@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wahl>
+    <ergebnisse/>
+    <listen>
+        <liste kuerzel="L1" name="Liste 1" nummer="1">
+            <kandidaten>
+                <kandidat name="1 Kand 1" nummer="1"/>
+                <kandidat name="1 Kand 2" nummer="2"/>
+            </kandidaten>
+        </liste>
+        <liste kuerzel="L2" name="Liste 2" nummer="1">
+            <kandidaten>
+                <kandidat name="2 Kand 1" nummer="1"/>
+                <kandidat name="2 Kand 2" nummer="2"/>
+            </kandidaten>
+        </liste>
+    </listen>
+    <urnen>
+        <urne name="Urne 1" nummer="1"/>
+        <urne name="Urne 2" nummer="2"/>
+    </urnen>
+</wahl>
