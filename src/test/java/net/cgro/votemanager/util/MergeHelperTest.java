@@ -93,8 +93,8 @@ class MergeHelperTest {
 
         assertThatThrownBy(errorCollector::throwIfHasErrors)
                 .isInstanceOf(WahlMergeException.class)
-                .hasMessage("Liste[name='Liste 1',kuerzel='liste1',nummer=1]: Kandidat[name='kandidat1',nummer=1] fehlt im Import\n" +
-                        "Liste[name='Liste 1',kuerzel='liste1',nummer=1]: Kandidat[name='kandidat2',nummer=2] aus dem Import ist unbekannt");
+                .hasMessage("Liste[name='Liste 1',kuerzel='liste1',nummer=1]: Kandidatur[name='kandidat1',nummer=1] fehlt im Import\n" +
+                        "Liste[name='Liste 1',kuerzel='liste1',nummer=1]: Kandidatur[name='kandidat2',nummer=2] aus dem Import ist unbekannt");
     }
 
 
@@ -117,7 +117,7 @@ class MergeHelperTest {
         Urne urne1 = new Urne("Urne 1", 1);
         wahl.addUrne(urne1);
         Liste liste1 = new Liste("Liste 1", "liste1", 1);
-        liste1.addKandidat(new Kandidat("Kandidat 1", 1));
+        liste1.addKandidat(new Kandidat("Kandidatur 1", 1));
         wahl.addListe(liste1);
         Ergebnis ergebnis1 = new Ergebnis(urne1);
         wahl.setErgebnis(ergebnis1);
@@ -126,7 +126,7 @@ class MergeHelperTest {
         Urne urne2 = new Urne("Urne 1", 1);
         other.addUrne(urne2);
         Liste liste2 = new Liste("Liste 1", "liste1", 1);
-        liste2.addKandidat(new Kandidat("Kandidat 1", 1));
+        liste2.addKandidat(new Kandidat("Kandidatur 1", 1));
         other.addListe(liste2);
         Ergebnis ergebnis2 = new Ergebnis(urne2);
         other.setErgebnis(ergebnis2);

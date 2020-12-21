@@ -152,7 +152,7 @@
                         </BorderPane>
                     </content>
                 </Tab>
-                <Tab text="Kandidaten">
+                <Tab text="Kandidaturen">
                     <content>
                         <BorderPane prefHeight="200.0" prefWidth="200.0">
                             <center>
@@ -166,7 +166,7 @@
                             <top>
                                 <GridPane BorderPane.alignment="CENTER">
                                     <children>
-                                        <Button fx:id="buttonKandidatAdd" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatAdd" prefHeight="50.0" prefWidth="208.0" text="Kandidat hinzufügen" GridPane.columnIndex="1">
+                                        <Button fx:id="buttonKandidatAdd" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatAdd" prefHeight="50.0" prefWidth="208.0" text="Kandidatur hinzufügen" GridPane.columnIndex="1">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
@@ -174,7 +174,7 @@
                                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                             </GridPane.margin>
                                         </Button>
-                                        <Button fx:id="buttonKandidatRename" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatRename" prefHeight="50.0" prefWidth="215.0" text="Kandidat ändern" GridPane.columnIndex="2">
+                                        <Button fx:id="buttonKandidatRename" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatRename" prefHeight="50.0" prefWidth="215.0" text="Kandidatur ändern" GridPane.columnIndex="2">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>
@@ -182,7 +182,7 @@
                                                 <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
                                             </GridPane.margin>
                                         </Button>
-                                        <Button fx:id="buttonKandidatLöschen" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatDelete" prefHeight="50.0" prefWidth="221.0" text="Kandidat löschen" GridPane.columnIndex="3">
+                                        <Button fx:id="buttonKandidatLöschen" maxWidth="5000.0" mnemonicParsing="false" onAction="#handleButtonKandidatDelete" prefHeight="50.0" prefWidth="221.0" text="Kandidatur löschen" GridPane.columnIndex="3">
                                             <font>
                                                 <Font name="System Bold" size="13.0" />
                                             </font>

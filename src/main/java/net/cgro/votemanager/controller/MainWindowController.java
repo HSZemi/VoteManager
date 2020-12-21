@@ -220,7 +220,7 @@ public class MainWindowController implements Initializable {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Kandidat hinzufügen");
+            stage.setTitle("Kandidatur hinzufügen");
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
@@ -249,7 +249,7 @@ public class MainWindowController implements Initializable {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Kandidat ändern");
+            stage.setTitle("Kandidatur ändern");
             stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {

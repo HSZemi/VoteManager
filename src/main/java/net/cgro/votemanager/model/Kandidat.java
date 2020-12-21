@@ -64,7 +64,7 @@ public class Kandidat {
 
     @Override
     public String toString() {
-        return String.format("Kandidat[name='%s',nummer=%d]", name.getValue(), nummer.getValue());
+        return String.format("Kandidatur[name='%s',nummer=%d]", name.getValue(), nummer.getValue());
     }
 
     @Override

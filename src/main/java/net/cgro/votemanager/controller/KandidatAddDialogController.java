@@ -39,8 +39,8 @@ public class KandidatAddDialogController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        inputName.setPromptText("Name des Kandidaten eingeben");
-        inputNummer.setPromptText("Nummer des Kandidaten eingeben");
+        inputName.setPromptText("Name der Kandidaturen eingeben");
+        inputNummer.setPromptText("Nummer der Kandidatur eingeben");
     }
 
     public void setListe(Liste liste) {

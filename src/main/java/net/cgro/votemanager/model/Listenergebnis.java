@@ -66,7 +66,7 @@ public class Listenergebnis {
 
         // Fehlende Kandidatenergebnisse -> Warnung
         for (Kandidat kandidat : kandidaten) {
-            results.add(new CheckResult("Kandidat " + kandidat.getName() + " - Kandidatenstimmen fehlen", ResultType.RESULT_TYPE_WARNING));
+            results.add(new CheckResult("Kandidatur " + kandidat.getName() + " - Kandidaturenstimmen fehlen", ResultType.RESULT_TYPE_WARNING));
             state = false;
         }
 

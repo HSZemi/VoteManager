@@ -12,7 +12,7 @@ Das Programm wurde ursprünglich für die Wahlen zum Studierendenparlament an de
 
 ## Funktionen
 
-- Definition der zur Wahl antretenden Listen und Kandidaten
+- Definition der zur Wahl antretenden Listen und Kandidaturen
 . Definition der Wahlurnen/-Bezirke/-Lokale
 - Eingabe der Stimmergebnisse für jede einzelne Urne mit automatischer Fehlerüberprüfung
 - Anzeige der Ergebnisse einzelner Urnen und des Gesamtergebnis aller Urnen
@@ -23,7 +23,7 @@ Das Programm wurde ursprünglich für die Wahlen zum Studierendenparlament an de
 
 Die jeweils aktuelle Version von VoteManager kann als .jar-Datei unter dem Menüpunkt "Releases" heruntergeladen werden. Zum Ausführen der Datei wird Java 8 benötigt.
 
-Nach Programmstart öffnet sich das Hauptfenster, in dem alle Programmfunktionen verfügbar sind. Zu Beginn wird das Programm mit einer leeren Datei initialisiert. Nun können die Urnen, Listen und Kandidaten über die entsprechenden Menüpunkte erstellt und bearbeitet werden. Nachdem diese Definitionen erstellt sind, kann die Eingabe der Wahlergebnisse durchgeführt werden.
+Nach Programmstart öffnet sich das Hauptfenster, in dem alle Programmfunktionen verfügbar sind. Zu Beginn wird das Programm mit einer leeren Datei initialisiert. Nun können die Urnen, Listen und Kandidaturen über die entsprechenden Menüpunkte erstellt und bearbeitet werden. Nachdem diese Definitionen erstellt sind, kann die Eingabe der Wahlergebnisse durchgeführt werden.
 
 Das Laden und Speichern ist jederzeit über den Menüpunkt "Datei" möglich.
 

@@ -6,13 +6,13 @@
 <VBox prefHeight="0.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="net.cgro.votemanager.controller.KandidatAddDialogController">
     <children>
-        <Label text="Nummer des Kandidaten"/>
+        <Label text="Nummer der Kandidatur"/>
         <TextField fx:id="inputNummer">
             <VBox.margin>
                 <Insets top="10.0"/>
             </VBox.margin>
         </TextField>
-        <Label text="Name des Kandidaten">
+        <Label text="Name der Kandidatur">
             <VBox.margin>
                 <Insets top="20.0"/>
             </VBox.margin>
