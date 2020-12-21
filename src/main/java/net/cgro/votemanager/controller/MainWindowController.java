@@ -230,7 +230,31 @@ public class MainWindowController implements Initializable {
 
     @FXML
     private void handleButtonKandidatRename(ActionEvent event) {
-        showNotImplementedAlert();
+        if (tableKandidaten.getSelectionModel().getSelectedItem() == null) {
+            showAlert(ERROR, "Kandidatur bearbeiten", "Fehler", "Es ist keine Kandidatur ausgewählt. Bitte eine Kandidatur auswählen.");
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/fxml/KandidatModifyDialog.fxml"));
+            Parent dialog = loader.load();
+
+            Scene scene = new Scene(dialog);
+            scene.getStylesheets().add("/styles/Styles.css");
+
+            KandidatModifyDialogController controller = loader.getController();
+            controller.setListe(current_liste);
+            controller.setKandidat(tableKandidaten.getSelectionModel().getSelectedItem());
+
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Kandidat ändern");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(MainWindowController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @FXML
@@ -395,11 +419,6 @@ public class MainWindowController implements Initializable {
         }
         initializeGUI();
     }
-
-    private void showNotImplementedAlert() {
-        showAlert(INFORMATION, "Hoppla!", "Nicht implementiert", "Diese Funktionalität ist nicht implementiert.");
-    }
-
 
     private void showAlert(AlertType alertType, String title, String header, String message) {
         Alert alert = new Alert(alertType);
