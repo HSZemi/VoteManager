@@ -1,0 +1,54 @@
+name: Gradle-Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build the project with Gradle
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up JDK 15
+        uses: actions/setup-java@v1
+        with:
+          java-version: '15'
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: determine jar file name
+        id: determine_filename
+        run: |
+          ARTIFACT_PATHNAME=$(ls ./build/libs/*.jar | head -n 1)
+          ARTIFACT_NAME=$(basename $ARTIFACT_PATHNAME)
+          echo ::set-output name=jar_pathname::${ARTIFACT_PATHNAME}
+          echo ::set-output name=jar_filename::${ARTIFACT_NAME}
+      - name: determine tag name
+        id: determine_tag_name
+        run: |
+          DATE=$(date +%Y%m%d)
+          HASH=$(git rev-parse --short HEAD)
+          echo ::set-output name=tag_name::v${DATE}-${HASH}
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.determine_tag_name.outputs.tag_name }}
+          release_name: ${{ steps.determine_tag_name.outputs.tag_name }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing its ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
+          asset_path: ./${{ steps.determine_filename.outputs.jar_pathname }}
+          asset_name: ${{ steps.determine_filename.outputs.jar_filename }}
+          asset_content_type: application/zip
